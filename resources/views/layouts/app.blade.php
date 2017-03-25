@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
+    <meta name="robots" content="noindex" />
+    <title>Yatin Dandekar Photogaphy</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -50,7 +50,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{ url('backend/portfolio') }}">Portfolio</a></li>
+                    <li><a href="{{ url('portfolio_backend') }}">Portfolio</a></li>
                     <li><a href="{{ url('/home') }}">About</a></li>
                     <li><a href="{{ url('/home') }}">Video</a></li>
                     <li><a href="{{ url('/home') }}">Contact</a></li>

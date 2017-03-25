@@ -6,44 +6,18 @@
 <!-- For item sizes use classes .wide and .tall -->
 <div class="container fullwidth">
 	<div class="grid gallery" data-gutter="5" data-columns="4">
-
-		<div class="grid-item">
-			<a href="img/portfolio/3.jpg" data-background="img/portfolio/3.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
+@foreach($data as $data)
+	@if($data->caption=="")
+	<?php $title="Yatin Dandekar Photography"; ?>
+	@else
+	<?php $title=$data->caption; ?>
+	@endif
+	@if($data->status==1)
+		<div class="grid-item {{$data->property}}">
+			<a href="{{$data->image}}" data-background="{{$data->image}}" data-rel="lightcase:gal" title="{{$title}}"></a>
 		</div>
-		<div class="grid-item wide">
-			<a href="img/portfolio/34.jpg" data-background="img/portfolio/34.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item tall">
-			<a href="img/portfolio/52.jpg" data-background="img/portfolio/52.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item wide tall">
-			<a href="img/portfolio/1.jpg" data-background="img/portfolio/1.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item tall">
-			<a href="img/portfolio/33.jpg" data-background="img/portfolio/33.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item">
-			<a href="img/portfolio/31.jpg" data-background="img/portfolio/31.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item">
-			<a href="img/portfolio/7.jpg" data-background="img/portfolio/7.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item wide">
-			<a href="img/portfolio/6.jpg" data-background="img/portfolio/6.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item">
-			<a href="img/portfolio/2.jpg" data-background="img/portfolio/2.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item wide">
-			<a href="img/portfolio/12.jpg" data-background="img/portfolio/12.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item">
-			<a href="img/portfolio/30.jpg" data-background="img/portfolio/30.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-		<div class="grid-item">
-			<a href="img/portfolio/27.jpg" data-background="img/portfolio/27.jpg" data-rel="lightcase:gal" title="Image Caption"></a>
-		</div>
-
+	@endif
+@endforeach
 	</div>
 </div>
 <!-- /PORTFOLIO -->

@@ -17,4 +17,7 @@
 @show
 	
 </body>
+<script type="text/javascript">
+$(document).keydown(function(a){return 123!=a.keyCode&&((!a.ctrlKey||!a.shiftKey||73!=a.keyCode)&&((!a.ctrlKey||!a.shiftKey||74!=a.keyCode)&&((!a.ctrlKey||83!=a.keyCode)&&((!a.ctrlKey||!a.shiftKey||67!=a.keyCode)&&void 0))))}),$(document).on("contextmenu",function(a){a.preventDefault()});
+</script>
 </html>

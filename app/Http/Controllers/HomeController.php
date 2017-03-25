@@ -29,10 +29,7 @@ class HomeController extends Controller
         return view('backend/home',['data' => $data]);
     }
 
-    public function portfolio() {
-        return view('backend/portfolio');
-    }
-
+  
     public function addImageSlider(Request $request) {
         $rules = ['image' => 'required|mimes:jpeg,png,gif'];
         $messages = ['image.required' => 'Please enter image.',

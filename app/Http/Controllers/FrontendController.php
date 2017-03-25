@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Home_slider;
+use App\portfolio_images;
 
 class FrontendController extends Controller
 {
@@ -15,7 +16,8 @@ class FrontendController extends Controller
     }
 
     public function portfolio() {
-    	return view('frontend.portfolio');
+        $data = portfolio_images::all();
+    	return view('frontend.portfolio',['data' => $data]);
     }
 
     public function about() {
