@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Home_slider;
 use App\portfolio_images;
-
+use App\Video_main;
+use App\Video_page_header;
 class FrontendController extends Controller
 {
     public function index() {
@@ -25,7 +26,9 @@ class FrontendController extends Controller
     }
 
     public function video() {
-    	return view('frontend.video');
+        $data = Video_main::all();
+        $Video_page_header = Video_page_header::all();
+    	return view('frontend.video',['data' => $data,'Video_page_header'=>$Video_page_header]);
     }
 
     public function contact() {

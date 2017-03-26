@@ -52,7 +52,7 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('portfolio_backend') }}">Portfolio</a></li>
                     <li><a href="{{ url('/home') }}">About</a></li>
-                    <li><a href="{{ url('/home') }}">Video</a></li>
+                    <li><a href="{{ url('/video_backend') }}">Video</a></li>
                     <li><a href="{{ url('/home') }}">Contact</a></li>
                 </ul>
 

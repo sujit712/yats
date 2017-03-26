@@ -31,7 +31,7 @@
 	
 	<!-- FOOTER LINKS -->
 	<div class="footer-links">
-		&copy; 2017. All Rights Reserved |
+		&copy; <?php echo date("Y");?>. All Rights Reserved |
 		<a href="https://www.facebook.com/yatindandekarphotography/" target="_blank">Facebook</a> |
 		<a href="https://www.instagram.com/yatindandekarphotography/" target="_blank">Instagram</a>
 	</div>

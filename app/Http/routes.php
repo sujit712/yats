@@ -29,3 +29,8 @@ Route::post('deleteImage','HomeController@deleteImage');
 Route::post('profile_add_images','PortfolioController@create');
 Route::post('delete_prof_image','PortfolioController@destroy');
 Route::post('edit_prof_image','PortfolioController@edit');
+Route::get('video_backend','VideoController@index');
+Route::post('video_add_url','VideoController@create');
+Route::post('delete_prof_image_video','VideoController@destroy');
+Route::post('edit_prof_image_video','VideoController@edit');
+Route::post('video_header','VideoController@video_header');
