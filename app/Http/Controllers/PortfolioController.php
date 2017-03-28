@@ -38,7 +38,7 @@ class PortfolioController extends Controller
     public function create(Request $request)
     {
         //
-         $rules = ['image' => 'required|mimes:jpeg,png,gif'];
+        $rules = ['image' => 'required|mimes:jpeg,png,gif'];
         $messages = ['image.required' => 'Please enter image.',
                      'image.mimes' => 'Enter valid image.'];
 
@@ -70,6 +70,7 @@ class PortfolioController extends Controller
     public function store(Request $request)
     {
         //
+        return redirect()->back()->with('message','yes');
     }
 
     /**

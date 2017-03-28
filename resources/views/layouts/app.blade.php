@@ -49,11 +49,11 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{ url('portfolio_backend') }}">Portfolio</a></li>
-                    <li><a href="{{ url('/home') }}">About</a></li>
-                    <li><a href="{{ url('/video_backend') }}">Video</a></li>
-                    <li><a href="{{ url('/home') }}">Contact</a></li>
+                    <li class="{{ Request::is('home') ? 'active' : ''}}"><a href="{{ url('/home') }}">Home</a></li>
+                    <li class="{{ Request::is('portfolio_backend') ? 'active' : ''}}"><a href="{{ url('portfolio_backend') }}">Portfolio</a></li>
+                    <li class="{{ Request::is('about_backend') ? 'active' : ''}}"><a href="{{ url('/about_backend') }}">About</a></li>
+                    <li class="{{ Request::is('video_backend') ? 'active' : ''}}"><a href="{{ url('/video_backend') }}">Video</a></li>
+                    <li class="{{ Request::is('contact_backend') ? 'active' : ''}}"><a href="{{ url('/contact_backend') }}">Contact</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

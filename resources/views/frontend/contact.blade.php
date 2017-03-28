@@ -3,10 +3,14 @@
 @section('content')
 	
 	<!-- HERO -->
-	<div class="container fullwidth pt140 pb140 overlay-dark" data-background="img/home-slider/yatin-dandekar-home-5.jpg">
+	<div class="container fullwidth pt140 pb140 overlay-dark" data-background="{{$image}}">
 		<div class="pt140 pb140">
 			<div class="entrance">
-				<h2 class="title">Get In Touch</h2>
+				@if(!empty($caption))
+					<h2 class="title">{{$caption}}</h2>
+				@else
+					<h2 class="title">Get In Touch</h2>
+				@endif
 			</div>
 		</div>
 	</div>
@@ -19,18 +23,21 @@
 			<div class="col-md-4 col-md-offset-1">
 
 				<h3 class="title title-tooltip">Contact Us</h3>
+				@if(!empty($contact_us_text))
+					<p class="small mb40">{{$contact_us_text}}</p>
 
-				<p class="small mb40">GET IN TOUCH RIGHT NOW and book your seat for  Amazing Courses  </p>
+				@endif
+				
 				
 				<div class="contact-info">
 					<a href="#">
-						<b>Mail:</b> yatindandekar31@gmail.com
+						<b>Mail:</b> {{$email}}
 					</a>
 					<a href="#">
-						<b>Address:</b> >Workshop Studio Address: 14 Sainath Industrial Estate, Mahakali Caves Road, Opp Domino's Pizza, Andheri East, Mumbai 400093.
+						<b>Address:</b> {{$address}}
 					</a>
 					<a href="#">
-						<b>Phone:</b> +91 90040 66588
+						<b>Phone:</b> +91 {{$phone}}
 					</a>
 				</div>
 				

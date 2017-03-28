@@ -3,11 +3,17 @@
 @section('content')
 
 <!-- HERO -->
-<div class="container fullwidth pt140 pb140" data-background="img/home-slider/yatin-dandekar-home-3.jpg">
+<!-- <div class="container fullwidth pt140 pb140" data-background="img/home-slider/yatin-dandekar-home-3.jpg"> -->
+<div class="container fullwidth pt140 pb140" data-background="{{$image}}">
 	<div class="pt140 pb140">
 
 		<div class="entrance">
-			<h1 class="title">Who We Are</h1>
+			@if(!empty($caption))
+				<h1 class="title">{{$caption}}</h1>
+			@else
+				<h1 class="title">Who We Are</h1>
+			@endif
+			
 		</div>
 		
 	</div>
