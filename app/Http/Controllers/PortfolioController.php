@@ -52,7 +52,7 @@ class PortfolioController extends Controller
         $caption=$request->caption;
         $property=$request->property;
         $portfolio_images = new portfolio_images;
-        $portfolio_images->image = $name;
+        $portfolio_images->image = str_replace(" ", "%20", $name);
         $portfolio_images->caption = $caption;
         $portfolio_images->property = $property;
         $portfolio_images->status=1;
@@ -108,6 +108,7 @@ class PortfolioController extends Controller
             $name = 'img/portfolio/'.$date.$uniqid.$image->getClientOriginalName();
 
             //delete old image
+            $request->image_old = str_replace("%20", " ", $request->image_old);
             if(file_exists($request->image_old)){
                 unlink($request->image_old);
             }
@@ -119,7 +120,7 @@ class PortfolioController extends Controller
         $caption=$request->caption;
         $property=$request->property;
         $updateRow = portfolio_images::where('id', $request->id)->update(
-                ['image' => $name,
+                ['image' => str_replace(" ", "%20", $name),
                 'caption' => $caption,
                 'property' => $property,
                 'status' => $status]);
@@ -149,7 +150,7 @@ class PortfolioController extends Controller
      */
     public function destroy(Request $request)
     {
-        //
+        $request->image=str_replace("%20", " ", $request->image);
         if(file_exists($request->image)){
             unlink($request->image);
         }

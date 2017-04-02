@@ -59,7 +59,7 @@ class AboutController extends Controller
         $caption=$request->caption;
 
         $abt = new About_us_header;
-        $abt->image = $name;
+        $abt->image = str_replace(" ", "%20", $name);
         $abt->caption = ($caption ? $caption : '');
         $abt->save();
 
@@ -114,6 +114,7 @@ class AboutController extends Controller
             $name = 'img/about-us/'.$date.$uniqid.$image->getClientOriginalName();
 
             //delete old image
+            $request->image_old = str_replace("%20", " ", $request->image_old);
             if(file_exists($request->image_old)){
                 unlink($request->image_old);
             }
@@ -126,7 +127,7 @@ class AboutController extends Controller
 
 
         $updateRow = About_us_header::where('id', $id)->update(
-                ['image' => $name,
+                ['image' => str_replace(" ", "%20", $name),
                 'caption' => $caption]);
 
 
@@ -144,6 +145,7 @@ class AboutController extends Controller
     public function destroy(Request $request, $id)
     {
         $get_image = About_us_header::where('id',$id)->first();
+        $get_image->image=str_replace("%20", " ", $get_image->image);
         if(file_exists($get_image->image)){
             unlink($get_image->image);
         }

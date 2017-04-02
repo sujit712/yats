@@ -43,7 +43,7 @@ class VideoController extends Controller
         $property=$request->property;
         $video_url=$request->video_url;
         $Video_main = new Video_main;
-        $Video_main->display_image = $name;
+        $Video_main->display_image = str_replace(" ", "%20", $name);
         $Video_main->caption = $caption;
         $Video_main->property = $property;
         $Video_main->video_url=$video_url;
@@ -72,6 +72,7 @@ class VideoController extends Controller
             $name = 'img/video-images/'.$date.$uniqid.$image->getClientOriginalName();
 
             //delete old image
+            $request->image_old = str_replace("%20", " ", $request->image_old);
             if(file_exists($request->image_old)){
                 unlink($request->image_old);
             }
@@ -87,7 +88,7 @@ class VideoController extends Controller
         $property=$request->property;
         $video_url=$request->video_url;
         $updateRow = Video_main::where('id', $request->id)->update(
-                ['display_image' => $name,
+                ['display_image' => str_replace(" ", "%20", $name),
                 'caption' => $caption,
                 'property' => $property,
                 'status' => $status,
@@ -98,6 +99,7 @@ class VideoController extends Controller
     public function destroy(Request $request)
     {
         //
+        $request->image=str_replace("%20", " ", $request->image);
         if(file_exists($request->image)){
             unlink($request->image);
         }
@@ -120,7 +122,7 @@ class VideoController extends Controller
         $name = 'img/video-images/'.$date.$uniqid.$image->getClientOriginalName();
         $caption=$request->caption;
         $Video_page_header = new Video_page_header;
-        $Video_page_header->image = $name;
+        $Video_page_header->image = str_replace(" ", "%20", $name);
         $Video_page_header->title = $caption;
         $Video_page_header->save();       
         return redirect()->back()->with('message','Image has been added successfully.');
@@ -137,6 +139,7 @@ class VideoController extends Controller
             $image->move('img/video-images',$date.$uniqid.$image->getClientOriginalName());
             $name = 'img/video-images/'.$date.$uniqid.$image->getClientOriginalName();
             //delete old image
+            $video_header_data->image=str_replace("%20", " ", $video_header_data->image);
             if(file_exists($video_header_data->image)){
                 unlink($video_header_data->image);
             }
@@ -146,7 +149,7 @@ class VideoController extends Controller
         }
         $caption=$request->caption;
         $updateRow = Video_page_header::where('id',$video_header_data->id)->update(
-                ['image' => $name,
+                ['image' => str_replace(" ", "%20", $name),
                 'title' => $caption]);
         return redirect()->back()->with('message','Image has been updated.');
         }

@@ -35,7 +35,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Home Slider</div>
             <div class="panel-body">
-                <form action="{{ route('about_backend.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ action('HomeController@addImageSlider') }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                     <div class="row">
                       <div class="col-md-6 col-md-offset-3">

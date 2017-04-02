@@ -70,7 +70,7 @@ class ContactusController extends Controller
         $caption=$request->caption;
 
         $contactUs = new Contact_us;
-        $contactUs->image = $name;
+        $contactUs->image = str_replace(" ", "%20", $name);
         $contactUs->caption = ($caption ? $caption : '');
         $contactUs->email = $request->email;
         $contactUs->phone = $request->phone;
@@ -135,6 +135,7 @@ class ContactusController extends Controller
             $name = 'img/contact-us/'.$date.$uniqid.$image->getClientOriginalName();
 
             //delete old image
+            $request->image_old = str_replace("%20", " ", $request->image_old);
             if(file_exists($request->image_old)){
                 unlink($request->image_old);
             }
@@ -158,7 +159,7 @@ class ContactusController extends Controller
 
 
         $updateRow = Contact_us::where('id', $id)->update(
-                ['image' => $name,
+                ['image' => str_replace(" ", "%20", $name),
                 'caption' => $caption,
                 'address' => $request->address,
                 'email' => $request->email,
@@ -180,6 +181,7 @@ class ContactusController extends Controller
     {
         $img = Contact_us::where('id', $id)->first();
 
+    $img->image=str_replace("%20", " ", $img->image);
         if(file_exists($img->image)){
             unlink($img->image);
         }

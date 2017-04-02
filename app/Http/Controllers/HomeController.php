@@ -44,7 +44,7 @@ class HomeController extends Controller
         $name = 'img/home-slider/'.$date.$uniqid.$image->getClientOriginalName();
 
         $Home_slider = new Home_slider;
-        $Home_slider->image = $name;
+        $Home_slider->image = str_replace(" ", "%20", $name);
         $Home_slider->status = ($request->status ? 1 : 0);
 
         $Home_slider->save();       
@@ -70,6 +70,7 @@ class HomeController extends Controller
             $name = 'img/home-slider/'.$date.$uniqid.$image->getClientOriginalName();
 
             //delete old image
+            $request->image_old = str_replace("%20", " ", $request->image_old);
             if(file_exists($request->image_old)){
                 unlink($request->image_old);
             }
@@ -79,7 +80,7 @@ class HomeController extends Controller
         }
 
         $updateRow = Home_slider::where('id', $request->id)->update(
-                ['image' => $name,
+                ['image' => str_replace(" ", "%20", $name),
                 'status' => $status]);
 
         return redirect()->back()->with('message','Image has been updated.');
@@ -87,6 +88,7 @@ class HomeController extends Controller
 
     //Delete Image
     public function deleteImage(Request $request) {
+        $request->image=str_replace("%20", " ", $request->image);
         if(file_exists($request->image)){
             unlink($request->image);
         }
