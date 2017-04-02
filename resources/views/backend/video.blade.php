@@ -51,15 +51,15 @@
         <div class="panel panel-default">
             <div class="panel-heading">Video Header Show</div>
                 <div class="panel-body">
-                   <?php $page_header = DB::table('video_page_header')->first(); ?>
+                   
                    <table class="table">
                     <tr>
                       <th>Image</th>
                       <th>Title</th>
                     </tr>
                     <tr>
-                      <td><img src="{{$page_header->image}}" height="100px" width="100px" data-toggle="modal" data-target="#showsingleimage"></td>
-                      <td>{{$page_header->title}}</td>
+                      <td><img src="{{$image}}" height="100px" width="100px" data-toggle="modal" data-target="#showsingleimage"></td>
+                      <td>{{$title}}</td>
                     </tr>
                     </table>
                 </div>
@@ -68,7 +68,7 @@
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-body">
-                            <img src="{{$page_header->image}}" height="100%" width="100%">
+                            <img src="{{$image}}" height="100%" width="100%">
                           </div>
                         </div>
                       </div>
@@ -96,13 +96,12 @@
                                  <div class="form-group">
                                   <label for="property">Property:</label>
                                   <select class="form-control" id="property" name="property">
-                                     @foreach($profile_class as $profile)
-                                         @if($profile->property==null)
                                          <option value="">Default</option>
-                                         @else
-                                         <option value="{{$profile->property}}"> {{$profile->property}}</option>
-                                         @endif
-                                     @endforeach
+                                         <option value="wide">Wide</option>
+                                         <option value="tall">Tall</option>
+                                         <option value="wide tall">Wide Tall</option>
+                                         
+                                   
                                   </select>
                                 </div>
                              <button type="submit" class="btn btn-default">Submit</button>
@@ -202,13 +201,12 @@
                                  <div class="form-group">
                                   <label for="property">Property:</label>
                                   <select class="form-control" id="property" name="property">
-                                     @foreach($profile_class as $profile_edit)
-                                         @if($profile_edit->property==null)
-                                         <option value="" @if($profile_edit->property==$val->property) selected @endif>Default</option>
-                                         @else
-                                         <option value="{{$profile_edit->property}}" @if($profile_edit->property==$val->property) selected @endif > {{$profile_edit->property}}</option>
-                                         @endif
-                                     @endforeach
+                                         <option value="">Default</option>
+                                         <option value="wide">Wide</option>
+                                         <option value="tall">Tall</option>
+                                         <option value="wide tall">Wide Tall</option>
+                                         
+                                   
                                   </select>
                                 </div>
                                 <div class="form-group">

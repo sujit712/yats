@@ -24,30 +24,33 @@ class FrontendController extends Controller
     }
 
     public function about() {
-        $data = About_us_header::all();
-        foreach ($data as $value) {
-            $image = $value->image;
-            $caption = $value->caption;
-        }
+        $value = About_us_header::all()->first();
+             $image = empty($value->image) ? 'img/contact-us/default.jpg' : $value->image;   
+             $caption = empty($value->caption) ? 'About us' : $value->caption; 
+
     	return view('frontend.about', ['image' => $image, 'caption' => $caption]);
     }
 
     public function video() {
         $data = Video_main::all();
-        $Video_page_header = Video_page_header::all();
-    	return view('frontend.video',['data' => $data,'Video_page_header'=>$Video_page_header]);
+        $vdata = Video_page_header::all()->first();
+        $image = empty($vdata->image) ? 'img/contact-us/default.jpg' : $vdata->image;
+        $title = empty($vdata->title) ? "Hello, I am Yatin Dandekar. Photographer from India, I like To Capture The Perfect" : $vdata->title;
+    	return view('frontend.video',['data' => $data,'image'=>$image, 'title' => $title]);
     }
 
     public function contact() {
-        $data = Contact_us::all();
-        foreach ($data as $val) {
-            $image = $val->image;
-            $caption = $val->caption;
-            $email = $val->email;
-            $address = $val->address;
-            $contact_us_text = $val->contact_us_text;
-            $phone = $val->phone;
-        }
+        $value = Contact_us::all()->first();
+
+        $image = empty($value->image) ? 'img/contact-us/default.jpg' : $value->image; 
+        $caption = empty($value->caption) ? 'GET IN TOUCH' : $value->caption; 
+        $email = empty($value->email) ? 'yatindandekar31@gmail.com' : $value->email; 
+        $address = empty($value->address) ? "Workshop Studio Address: 14 Sainath Industrial Estate, Mahakali Caves Road, Opp Domino's Pizza, Andheri East, Mumbai 400093. Corespondent Address: Yatin K. Dandekar, Kores Nakshatra, Chitra 1/204, Vartak Nagar, Pokhran Road 1. Thane west Pin 400 606" : $value->address; 
+        $contact_us_text = empty($value->contact_us_text) ? 'Get in touch right now and book your seat for amazing courses' : $value->contact_us_text; 
+        $phone = empty($value->phone) ? '9004066588' : $value->phone; 
+
+//dd($contact_us_text);exit;
+
     	return view('frontend.contact',['image' => $image,
                                         'caption' => $caption,
                                         'email' => $email,

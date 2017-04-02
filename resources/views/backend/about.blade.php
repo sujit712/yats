@@ -71,9 +71,10 @@
                          {{$val->caption or 'No Caption'}}
                     </td>
                     <td class="action">
-                      <form action="{{action('AboutController@destroy')}}" method="post">
+                      <form action="{{route('about_backend.destroy', $val->id)}}" method="post">
                         {{csrf_field()}}
-                        <input type="hidden" name="id" value="{{$val->id}}">
+                        {{ method_field('DELETE') }}
+                        
                         <input type="hidden" name="image" value="{{$val->image}}">
                         <button type="submit" class="btn btn-danger delimg"><i class="fa fa-trash"></i></button>
                       </form>
@@ -100,10 +101,10 @@
                         </div>
                         <div class="modal-body">
 
-                          <form action="{{action('AboutController@update')}}" method="POST" enctype="multipart/form-data">
+                          <form action="{{route('about_backend.update', $val->id)}}" method="POST" enctype="multipart/form-data">
                             {{csrf_field()}}
-
-                            <input type="hidden" name="id" value="{{$val->id}}">
+                             {{ method_field('PUT') }}
+                            
                             <input type="hidden" name="image_old" value="{{$val->image}}">
                             <div class="row">
                               <div class="col-md-6 col-md-offset-3">

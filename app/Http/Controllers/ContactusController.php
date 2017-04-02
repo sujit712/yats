@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mail;
 use App\Http\Requests;
 use App\Contact_us;
+
+
 
 class ContactusController extends Controller
 {
@@ -108,7 +111,7 @@ class ContactusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         if($request->image){  
 
@@ -154,7 +157,7 @@ class ContactusController extends Controller
         $contact_us_text = ($request->contact_us_text ? $request->contact_us_text : '');
 
 
-        $updateRow = Contact_us::where('id', $request->id)->update(
+        $updateRow = Contact_us::where('id', $id)->update(
                 ['image' => $name,
                 'caption' => $caption,
                 'address' => $request->address,
@@ -173,12 +176,46 @@ class ContactusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        if(file_exists($request->image)){
-            unlink($request->image);
+        $img = Contact_us::where('id', $id)->first();
+
+        if(file_exists($img->image)){
+            unlink($img->image);
         }
-        $delImg = Contact_us::where('id',$request->id)->delete();
+        $delImg = Contact_us::where('id',$id)->delete();
         return redirect()->back()->with('message','Image has been deleted.');
+    }
+
+    public function sendmail(Request $request) {
+       $this->validate($request, ['name' => 'required',
+                                  'email' => 'required|email',
+                                  'message' => 'required'],
+                                  ['name.required' => 'Please enter name.',
+                                  'email.required' => 'Please enter email.',
+                                  'email.email' => 'Please enter valid email ID.',
+                                  'message.required' => 'Please enter message.']);
+
+       // $to = "7sujit12@gmail.com";
+       //  $subject = "New contact arrived";
+       //  $txt="Name: ".$request->name."<br>";
+       //  $txt.="Email: ".$request->email."<br>";
+       //  $txt.="Message: ".$request->message."<br>";
+       //  $headers = "From: ".$request->email. "\r\n";
+       //  $send_mail=mail($to,$subject,$txt,$headers);
+       //  if($send_mail){
+       //      echo "mail sent";
+       //  }else{
+       //      echo "not send";
+       //  }
+        $data = array('name'=>"Virat Gandhi");
+      Mail::send('mail', $data, function($message) {
+         $message->to('12sujit7@gmail.com', 'Tutorials Point')->subject
+            ('Laravel HTML Testing Mail');
+         $message->from('7sujit12@gmail.com','Virat Gandhi');
+      });
+      echo "HTML Email Sent. Check your inbox.";
+       
+
     }
 }

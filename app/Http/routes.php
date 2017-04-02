@@ -36,13 +36,8 @@ Route::post('edit_prof_image_video','VideoController@edit');
 Route::post('video_header','VideoController@video_header');
 
 //About Tab
-//Route::get('about_backend' , 'AboutController@index');
 Route::resource('about_backend', 'AboutController');
-Route::post('update','AboutController@update');
-Route::post('destroy','AboutController@destroy');
-
 //contact
 Route::resource('contact_backend', 'ContactusController');
-Route::post('update','ContactusController@update');
-Route::post('destroy','ContactusController@destroy');
+Route::post('sendmail', 'ContactusController@sendmail');
 

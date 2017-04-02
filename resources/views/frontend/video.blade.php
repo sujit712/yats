@@ -3,12 +3,11 @@
 @section('content')
 	
 	<!-- INTRO TEXT -->
-	@foreach($Video_page_header as $video_data)
-	@endforeach
-	<section class="pb100 overlay-dark-2x" data-background="{{$video_data->image}}">
+	
+	<section class="pb100 overlay-dark-2x" data-background="{{$image}}">
 		<div class="container pt100 pb100 mt0">
 			<div class="col-md-8 col-md-offset-2 mb0">
-				<p class="intro text-center text-light">{{$video_data->title}}</p>
+				<p class="intro text-center text-light">{{$title}}</p>
 			</div>
 		</div>
 	</section>

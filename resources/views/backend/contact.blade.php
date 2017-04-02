@@ -108,9 +108,10 @@
                   {{$val->contact_us_text}}
                 </td>
                 <td class="action">
-                  <form action="{{action('ContactusController@destroy')}}" method="post">
+                  <form action="{{route('contact_backend.destroy', $val->id)}}" method="post">
                     {{csrf_field()}}
-                    <input type="hidden" name="id" value="{{$val->id}}">
+                    {{ method_field('DELETE') }}
+                    
                     <input type="hidden" name="image" value="{{$val->image}}">
                     <button type="submit" class="btn btn-danger delimg"><i class="fa fa-trash"></i></button>
                   </form>
@@ -137,10 +138,10 @@
                     </div>
                     <div class="modal-body">
 
-                      <form action="{{action('ContactusController@update')}}" method="POST" enctype="multipart/form-data">
+                      <form action="{{route('contact_backend.update', $val->id)}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
-
-                        <input type="hidden" name="id" value="{{$val->id}}">
+                        {{ method_field('PUT') }}
+                        
                         <input type="hidden" name="image_old" value="{{$val->image}}">
                         <div class="row">
                           <div class="col-md-6 col-md-offset-3">
@@ -164,15 +165,11 @@
                             </div>
                             <div class="form-group">
                               <label for="address">Addreess:</label>
-                              <textarea class="form-control" name="address" id="address">
-                                {{$val->address}}
-                              </textarea>
+                              <textarea class="form-control" name="address" id="address">{{$val->address}}  </textarea>
                             </div>
                             <div class="form-group">
                               <label for="contact_us_text">Contact us text:</label>
-                              <textarea class="form-control" name="contact_us_text" id="contact_us_text">
-                              {{$val->contact_us_text}}
-                              </textarea>
+                              <textarea class="form-control" name="contact_us_text" id="contact_us_text">{{$val->contact_us_text}}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update</button>

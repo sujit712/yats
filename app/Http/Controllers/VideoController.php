@@ -18,9 +18,10 @@ class VideoController extends Controller
     {
         //
         $data = Video_main::all();
-        $profile_class = profile_class::all();
-        $video_header= Video_page_header::all();
-        return view('backend/video',['data' => $data],['profile_class'=>$profile_class],['video_header'=>$video_header]);
+        $vdata= Video_page_header::all()->first();
+        $image = empty($vdata->image) ? 'img/contact-us/default.jpg' : $vdata->image;
+        $title = empty($vdata->title) ? "Hello, I am Yatin Dandekar. Photographer from India, I like To Capture The Perfect" : $vdata->title;
+        return view('backend/video',['data' => $data,'image'=>$image, 'title' => $title]);
         
     }
     public function create(Request $request)

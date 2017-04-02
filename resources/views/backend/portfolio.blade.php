@@ -45,13 +45,10 @@
                                  <div class="form-group">
                                   <label for="property">Property:</label>
                                   <select class="form-control" id="property" name="property">
-                                     @foreach($profile_class as $profile)
-                                         @if($profile->property==null)
                                          <option value="">Default</option>
-                                         @else
-                                         <option value="{{$profile->property}}"> {{$profile->property}}</option>
-                                         @endif
-                                     @endforeach
+                                         <option value="wide">Wide</option>
+                                         <option value="tall">Tall</option>
+                                         <option value="wide tall">Wide Tall</option>      
                                   </select>
                                 </div>
                              <button type="submit" class="btn btn-default">Submit</button>
@@ -143,13 +140,10 @@
                                  <div class="form-group">
                                   <label for="property">Property:</label>
                                   <select class="form-control" id="property" name="property">
-                                     @foreach($profile_class as $profile_edit)
-                                         @if($profile_edit->property==null)
-                                         <option value="" @if($profile_edit->property==$val->property) selected @endif>Default</option>
-                                         @else
-                                         <option value="{{$profile_edit->property}}" @if($profile_edit->property==$val->property) selected @endif > {{$profile_edit->property}}</option>
-                                         @endif
-                                     @endforeach
+                                         <option value="">Default</option>
+                                         <option value="wide">Wide</option>
+                                         <option value="tall">Tall</option>
+                                         <option value="wide tall">Wide Tall</option>
                                   </select>
                                 </div>
                                 <div class="form-group">

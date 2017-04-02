@@ -48,8 +48,20 @@
 			<div class="col-md-6">
 
 				<div class="contact-message"></div>
+				@if (count($errors) > 0)
+				    <div class="alert alert-danger">
+				      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+				        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+				        <ul>
+				            @foreach ($errors->all() as $error)
+				                <li>{{ $error }}</li>
+				            @endforeach
+				        </ul>
+				    </div>
+				@endif
 			
-				<form id="contact" action="http://achtungthemes.com/borano/php/contact.php">
+				<form action="{{action('ContactusController@sendmail')}}" method="POST">
+				{{csrf_field()}}
 					<input name="name" id="name" type="text" placeholder="Name:" required autocomplete="off">
 					<input name="email" id="email" type="email" placeholder="Email:" required autocomplete="off">
 					<textarea name="message" id="message" placeholder="Message:" required rows="4"></textarea>

@@ -97,7 +97,7 @@ class AboutController extends Controller
      * @return \Illuminate\Http\Response
      */
     /*public function update(Request $request, $id)*/
-    public function update(Request $request)
+    public function update(Request $request, $id )
     {
         if($request->image){  
 
@@ -125,7 +125,7 @@ class AboutController extends Controller
         $caption = ($request->caption ? $request->caption : '');
 
 
-        $updateRow = About_us_header::where('id', $request->id)->update(
+        $updateRow = About_us_header::where('id', $id)->update(
                 ['image' => $name,
                 'caption' => $caption]);
 
@@ -141,12 +141,13 @@ class AboutController extends Controller
      * @return \Illuminate\Http\Response
      */
     /*public function destroy($id)*/
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
-        if(file_exists($request->image)){
-            unlink($request->image);
+        $get_image = About_us_header::where('id',$id)->first();
+        if(file_exists($get_image->image)){
+            unlink($get_image->image);
         }
-        $delImg = About_us_header::where('id',$request->id)->delete();
+        $delImg = About_us_header::where('id',$id)->delete();
         return redirect()->back()->with('message','Image has been deleted.');
     }
 }
